@@ -36,16 +36,16 @@
                 notifyIcon.DoubleClick += OnNotifyIconDoubleClick;
             }
 
-            using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
-            {
-                if (key != null)
-                {
-                    if (Settings.Default.StartupWithWindows) key.SetValue("PinWindows", Environment.CommandLine);
-                    else key.DeleteValue("PinWindows", false);
-                }
-            }
+            ViewModel = new ViewModel();
 
-            DataContext = new ViewModel();
+            MaxHeight = Screen.PrimaryScreen.Bounds.Height*0.75;
+            MinHeight = 300;
+        }
+
+        internal ViewModel ViewModel
+        {
+            get { return DataContext as ViewModel; }
+            set { DataContext = value; }
         }
 
         void OnNotifyIconDoubleClick(object sender, EventArgs args)
@@ -60,7 +60,10 @@
 
         protected override void OnStateChanged(EventArgs e)
         {
-            if (WindowState == WindowState.Minimized) Hide();
+            if (WindowState == WindowState.Minimized && ViewModel.MinimizeToTray)
+            {
+                Hide();
+            }
 
             base.OnStateChanged(e);
         }
