@@ -7,20 +7,31 @@
         <local:ViewModel/>
     </Window.DataContext>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Button Margin="10" Padding="6" Grid.Row="0" Content="Refresh" Command="{Binding Refresh}"></Button>
-        <ListBox Grid.Row="1" ItemsSource="{Binding Windows}" HorizontalAlignment="Stretch" Margin="10,0,10,10" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox Margin="2" IsChecked="{Binding IsPinned}" />
-                        <TextBlock Text="{Binding Title}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <TabControl>
+            <TabItem Header="Windows">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button Margin="10" Padding="6" Grid.Row="0" Content="Refresh" Command="{Binding Refresh}"></Button>
+                    <ListBox Grid.Row="1" ItemsSource="{Binding Windows}" HorizontalAlignment="Stretch" Margin="10,0,10,10" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Margin="2" IsChecked="{Binding IsPinned}" Content="{Binding Title}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Options">
+                <StackPanel Orientation="Vertical">
+                    <CheckBox Margin="2" IsChecked="{Binding StartupWithWindows}" Content="Start when Windows starts" />
+                    <CheckBox Margin="2" IsChecked="{Binding MinimizeToTray}" Content="Minimize to Windows Tray" />
+                </StackPanel>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
