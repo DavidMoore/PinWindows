@@ -34,10 +34,13 @@
                 notifyIcon.DoubleClick += OnNotifyIconDoubleClick;
             }
 
-            ViewModel = new ViewModel();
-
             MaxHeight = Screen.PrimaryScreen.Bounds.Height*0.75;
             MinHeight = 300;
+        }
+
+        public MainWindow(ViewModel viewModel) : this()
+        {
+            ViewModel = viewModel;
         }
 
         internal ViewModel ViewModel

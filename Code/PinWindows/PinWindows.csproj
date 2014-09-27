@@ -79,6 +79,9 @@
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>PinWindows.EntryPoint</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -104,9 +107,11 @@
     </ApplicationDefinition>
     <Compile Include="AlwaysOnTop.cs" />
     <Compile Include="DelegateCommand.cs" />
+    <Compile Include="EntryPoint.cs" />
     <Compile Include="ViewModel.cs" />
     <Compile Include="Win32Api.cs" />
     <Compile Include="WindowModel.cs" />
+    <Compile Include="WindowsAuthorizationService.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -3,8 +3,8 @@ namespace PinWindows
     using System;
     using System.ComponentModel;
     using System.Media;
-    
-    class WindowModel : INotifyPropertyChanged
+
+    public class WindowModel : INotifyPropertyChanged
     {
         bool isPinned;
         public IntPtr Handle { get; set; }

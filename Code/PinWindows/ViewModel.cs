@@ -11,10 +11,12 @@
     using Microsoft.Win32;
     using Properties;
 
-    class ViewModel
+    public class ViewModel
     {
         public ViewModel()
         {
+            WindowState = WindowState.Normal;
+
             Windows = new ObservableCollection<WindowModel>();
             
             Refresh = new DelegateCommand(o => EnumerateWindows());
@@ -110,24 +112,14 @@
             get { return Settings.Default.StartupWithWindows; }
             set
             {
-                if( Settings.Default.StartupWithWindows == value) return; 
+                if( Settings.Default.StartupWithWindows == value) return;
+
+                if (!ApplicationDeployment.IsNetworkDeployed) return;
 
                 Settings.Default.StartupWithWindows = value;
                 Settings.Default.Save();
 
-                using (var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true))
-                {
-                    if (key == null) return;
-
-                    if (Settings.Default.StartupWithWindows)
-                    {
-                        key.SetValue("PinWindows", Process.GetCurrentProcess().MainModule.FileName);
-                    }
-                    else
-                    {
-                        key.DeleteValue("PinWindows", false);
-                    }
-                }
+                ApplyRegistrySettings();
             }
         }
 
@@ -139,6 +131,33 @@
                 if( Settings.Default.MinimizeToTray == value) return;
                 Settings.Default.MinimizeToTray = value;
                 Settings.Default.Save();
+            }
+        }
+
+        public WindowState WindowState { get; set; }
+
+        public bool Minimized { get; set; }
+
+        public void ApplyRegistrySettings()
+        {
+            if (!ApplicationDeployment.IsNetworkDeployed)
+            {
+                Trace.TraceWarning("Not applying registry settings, as this copy of Pin Windows is not an installed deployment.");
+                return;
+            }
+
+            using (var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true))
+            {
+                if (key == null) return;
+
+                if (Settings.Default.StartupWithWindows)
+                {
+                    key.SetValue("PinWindows", string.Format("\"{0}\" /background", Process.GetCurrentProcess().MainModule.FileName));
+                }
+                else
+                {
+                    key.DeleteValue("PinWindows", false);
+                }
             }
         }
     }
