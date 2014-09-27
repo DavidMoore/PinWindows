@@ -7,8 +7,6 @@
     using System.Windows;
     using System.Windows.Forms;
     using System.Windows.Resources;
-    using Microsoft.Win32;
-    using Properties;
     using Application = System.Windows.Application;
 
     /// <summary>
@@ -50,8 +48,10 @@
 
         void OnNotifyIconDoubleClick(object sender, EventArgs args)
         {
-            WindowState = WindowState.Normal;
             Show();
+
+            WindowState = WindowState.Normal;
+            
             Activate();
             Win32Api.BringToFront(Process.GetCurrentProcess().MainWindowHandle);
             Show();
