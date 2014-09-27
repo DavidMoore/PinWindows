@@ -136,8 +136,6 @@
 
         public WindowState WindowState { get; set; }
 
-        public bool Minimized { get; set; }
-
         public void ApplyRegistrySettings()
         {
             if (!ApplicationDeployment.IsNetworkDeployed)
