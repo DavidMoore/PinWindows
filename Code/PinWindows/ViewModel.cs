@@ -6,6 +6,8 @@
     using System.Deployment.Application;
     using System.Diagnostics;
     using System.Linq;
+    using System.Runtime.InteropServices;
+    using System.Text;
     using System.Windows;
     using System.Windows.Input;
     using Microsoft.Win32;
@@ -86,7 +88,43 @@
 
         public ICommand Refresh { get; private set; }
 
-        void EnumerateWindows()
+        delegate bool EnumThreadDelegate(IntPtr handle, IntPtr param);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern bool EnumThreadWindows(int threadId, EnumThreadDelegate callback, IntPtr param);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool IsWindowVisible(IntPtr hWnd);
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int maxCharacters);
+
+        static WindowModel GetWindowModel(IntPtr handle)
+        {
+            if (!IsWindowVisible(handle)) return null;
+
+            var window = new WindowModel();
+            
+            window.Handle = handle;
+            window.Title = GetWindowTitle(window.Handle);
+            window.IsPinned = AlwaysOnTop.IsWindowTopMost(window.Handle);
+
+            return window;
+        }
+
+        static string GetWindowTitle(IntPtr handle)
+        {
+            var title = new StringBuilder(Int16.MaxValue);
+            var result = GetWindowText(handle, title, title.Capacity);
+            if (result == 0) return null;
+            if (result > 0) return title.ToString(0, result);
+            var ex = Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
+            Trace.TraceWarning("Couldn't get window title for handle {0}: {1}", handle, ex);
+            return null;
+        }
+
+        internal void EnumerateWindows()
         {
             var results = new List<WindowModel>();
 
@@ -94,11 +132,15 @@
                 .Where(x => x.MainWindowHandle != IntPtr.Zero && !string.IsNullOrEmpty(x.MainWindowTitle))
                 .OrderBy(x => x.MainWindowTitle))
             {
-                var window = new WindowModel();
-                window.Handle = process.MainWindowHandle;
-                window.Title = process.MainWindowTitle;
-                window.IsPinned = AlwaysOnTop.IsWindowTopMost(window.Handle);
-                results.Add(window);
+                foreach (ProcessThread thread in process.Threads)
+                {
+                    EnumThreadWindows(thread.Id, (handle, ptr) =>
+                    {
+                        var model = GetWindowModel(handle);
+                        if( model != null) results.Add(model);
+                        return true;
+                    }, IntPtr.Zero);
+                }
             }
 
             Windows.Clear();
