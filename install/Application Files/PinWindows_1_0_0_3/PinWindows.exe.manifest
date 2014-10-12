@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="PinWindows.exe" version="1.0.0.3" publicKeyToken="513c8268de6145dc" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="App.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="PinWindows" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="PinWindows.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3" />
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PinWindows.exe" size="46592">
+      <assemblyIdentity name="PinWindows" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>865uNEtRkNnndd7ztQMDnRp8AiWMCPsipXQ+Rgm1RlA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="App.ico" size="9062">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>xNtBGbN85CSlsBxKwIwEfl4joyeTpNoKGNQEn3zbHMg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="PinWindows.exe.config" size="1017">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Wmq8f64zUrdtSdAuSKOl02bHPdjU4W0g7Jv/CONE17M=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="PinWindows.pdb" size="77312">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Vu0D57WDjl1RN4e8nhL6tSk8/Gy/0vCrPJF7E/zHKFw=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=COMPY386\David" issuerKeyHash="fbc24ed253b7f5383b22d447427b10c21d4b8cf9" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>OmEHEXmKF61F81PAXwV1Xku6ZgrMVsTMt0jkzb3VkzE=</DigestValue></Reference></SignedInfo><SignatureValue>pvIyMHzZZOslwHizwC0jE1k5su1ss0faVMPVyZCZybJZQA1KOBygp50zmv/P3UahAHfprUT/9wcWDAbmmPzeMKs/qzPq0fQwUTSMxL4uTALzZ/I838xQ76Iz3lw2JsASfJBnBBU0gBrDDXlkQn1hvtvt6lMHHgyUK0mXUDnzlKk=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>2Y6voIPKljSjah/Zm5U3r+QTQ0RuYEoCxhM/fnOKDlaEvkbVwkP0fnrJNTvDaqJpvqasqyJOuv0XwtFhH9xf66JBAqQv45JEtplZraU3KSeeimDcDEVTq+wk1Vi6pZVRC3BiYldPemxcDoQwrKbTG1LxEtNNlfQUxYXxX2cuqJE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="3193d5bdcde448b7ccc456cc0a66ba4b5e75055fc053f345ad178a791107613a" Description="" Url=""><as:assemblyIdentity name="PinWindows.exe" version="1.0.0.3" publicKeyToken="513c8268de6145dc" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=COMPY386\David</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>b5FnQbp2UG5gkUxs4ShoPq98pKfxRW2hy/2OVcZHDUs=</DigestValue></Reference></SignedInfo><SignatureValue>ctvXKVrSCQe2RI78UylxgqWG0tqgqpFDyg6KvYKhbm5BxTuU8gecUe1NClLO8TICqTV9un5WfQJf7ROD29sZCTLVh6IvFO8XDHAaU9iihZNV/UZ6pm+b2dPt022YZcE/KMD/G8ZE446oWUVeWy0siasE4CunoFuseI5pZrdhc7E=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>2Y6voIPKljSjah/Zm5U3r+QTQ0RuYEoCxhM/fnOKDlaEvkbVwkP0fnrJNTvDaqJpvqasqyJOuv0XwtFhH9xf66JBAqQv45JEtplZraU3KSeeimDcDEVTq+wk1Vi6pZVRC3BiYldPemxcDoQwrKbTG1LxEtNNlfQUxYXxX2cuqJE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB0TCCATqgAwIBAgIQJrtp/usUW6lHE0TReebUDzANBgkqhkiG9w0BAQsFADAnMSUwIwYDVQQDHhwAQwBPAE0AUABZADMAOAA2AFwARABhAHYAaQBkMB4XDTE0MDkyNzA2MjYwNVoXDTE1MDkyNzEyMjYwNVowJzElMCMGA1UEAx4cAEMATwBNAFAAWQAzADgANgBcAEQAYQB2AGkAZDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA2Y6voIPKljSjah/Zm5U3r+QTQ0RuYEoCxhM/fnOKDlaEvkbVwkP0fnrJNTvDaqJpvqasqyJOuv0XwtFhH9xf66JBAqQv45JEtplZraU3KSeeimDcDEVTq+wk1Vi6pZVRC3BiYldPemxcDoQwrKbTG1LxEtNNlfQUxYXxX2cuqJECAwEAATANBgkqhkiG9w0BAQsFAAOBgQCEStz3Oy/v71Ypvqe0qATenj1phHE6iKKMAe/jJmbEAw8liHH2yPDh7um9JRh78TmmiaL3vlNZxGuo5d8hKYwvKsfjpusthpUDzEtRZcm8TQZ50mTuVsvYdttjdca/1ZUqvvndihMSr4GQ63oPwebsXPXYEhcPt+I1wxY4Ctx5lQ==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
