@@ -52,13 +52,9 @@
         void OnNotifyIconDoubleClick(object sender, EventArgs args)
         {
             Show();
-
             WindowState = WindowState.Normal;
-            
-            Activate();
             Win32Api.BringToFront(Process.GetCurrentProcess().MainWindowHandle);
-            Show();
-            Activate();
+            ViewModel.EnumerateWindows();
         }
 
         protected override void OnStateChanged(EventArgs e)
